@@ -15,5 +15,7 @@
 <label>職稱: </label>${usersResultMap.Title}<br>
 <label>部門: </label>${usersResultMap.Department}<br>
 
+<a href="/EIS/logout/toLoginPage">LOGOUT</a>
+
 </body>
 </html>
