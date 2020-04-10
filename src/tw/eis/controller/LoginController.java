@@ -20,7 +20,7 @@ import tw.eis.model.UsersService;
 
 
 @Controller
-@SessionAttributes(names = {"usersBean", "errorMsgMap", "LoginOK"})
+@SessionAttributes(names = {"usersResultMap", "errorMsgMap", "LoginOK"})
 @RequestMapping(path ="/login")
 public class LoginController {
 	private UsersService uService;

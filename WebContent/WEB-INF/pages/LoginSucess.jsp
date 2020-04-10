@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="BIG5"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +7,13 @@
 <title>Login Success</title>
 </head>
 <body>
-<h1>µn¤J¦¨¥\</h1>
-<h3>§Aªº­Ó¤H¸ê°T</h3>
-<label>­û¤u½s¸¹: </label>${usersResultMap.EmployeeID}<br>
-<label>±b¸¹: </label>${usersResultMap.UserName}<br>
-<label>±K½X: </label>${usersResultMap.UserPassword}<br>
-<label>Â¾ºÙ: </label>${usersResultMap.Title}<br>
-<label>³¡ªù: </label>${usersResultMap.Department}<br>
+<h1>ç™»å…¥æˆåŠŸ</h1>
+<h3>ä½ çš„å€‹äººè³‡è¨Š</h3>
+<label>å“¡å·¥ç·¨è™Ÿ: </label>${usersResultMap.EmployeeID}<br>
+<label>å¸³è™Ÿ: </label>${usersResultMap.UserName}<br>
+<label>å¯†ç¢¼: </label>${usersResultMap.UserPassword}<br>
+<label>è·ç¨±: </label>${usersResultMap.Title}<br>
+<label>éƒ¨é–€: </label>${usersResultMap.Department}<br>
 
 </body>
 </html>
