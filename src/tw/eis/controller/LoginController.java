@@ -1,19 +1,10 @@
 package tw.eis.controller;
 
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.eis.model.Users;
 import tw.eis.model.UsersService;
+import tw.eis.util.EISTools;
 
 
 
@@ -63,7 +55,9 @@ public class LoginController {
 			return "UserLogin";
 		}
 		
-		List<Users> loginResult=uService.findUsers(userAccount, userPwd);
+		String encryptPwd=EISTools.parseByte2HexStr(EISTools.encrypt(userPwd));
+		
+		List<Users> loginResult=uService.findUsers(userAccount, encryptPwd);
 		
 		if(loginResult.size()>0) {
 			Iterator<Users> loginResultIT = loginResult.iterator();
@@ -72,7 +66,7 @@ public class LoginController {
 			Map<String, String> usersResultMap = new HashMap<String, String>();
 			usersResultMap.put("EmployeeID", String.valueOf(uBean.getEmployeeID()));
 			usersResultMap.put("UserName", uBean.getUserName());
-			usersResultMap.put("UserPassword", uBean.getUserPassword());
+			usersResultMap.put("UserPassword", encryptPwd);
 			usersResultMap.put("Title", uBean.getTitle());
 			usersResultMap.put("Department", uBean.getDepartment());
 			model.addAttribute("usersResultMap", usersResultMap);
