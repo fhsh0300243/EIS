@@ -17,10 +17,10 @@ public class EISTools {
 	
 	public static final String KEY = "EEIT112Group6EIS20200508";
 	
-    public static byte[] encrypt(String content, String password) {
+    public static byte[] encrypt(String content) {
         try {           
                 KeyGenerator kgen = KeyGenerator.getInstance("AES");
-                kgen.init(128, new SecureRandom(password.getBytes()));
+                kgen.init(128, new SecureRandom(KEY.getBytes()));
                 SecretKey secretKey = kgen.generateKey();
                 byte[] enCodeFormat = secretKey.getEncoded();
                 SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
@@ -45,10 +45,10 @@ public class EISTools {
         return null;
     }
     
-    public static byte[] decrypt(byte[] content, String password) {
+    public static byte[] decrypt(byte[] content) {
         try {
                  KeyGenerator kgen = KeyGenerator.getInstance("AES");
-                 kgen.init(128, new SecureRandom(password.getBytes()));
+                 kgen.init(128, new SecureRandom(KEY.getBytes()));
                  SecretKey secretKey = kgen.generateKey();
                  byte[] enCodeFormat = secretKey.getEncoded();
                  SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");            
