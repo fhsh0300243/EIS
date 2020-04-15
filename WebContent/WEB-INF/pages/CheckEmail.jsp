@@ -20,8 +20,11 @@
                 <div class="ff-login-box">
                     <form method="post" name="lForm">
                         <h2 class="title">找回密碼</h2>
-                        <input type="text" class="form-control form-control-lg font-weight-light mt-4" placeholder="你的E-mail" name="email"><span class="wrong">${errorMsgFromForgetPwd.emailNotFound}</span>
-                        <input type="submit" value="提交" class="btn btn-primary btn-lg mt-3 ff-login-btn font-weight-bold" onclick="document.lForm.action='sendMail'"/><span class="registerOK">${errorMsgFromForgetPwd.emailSucess}</span>
+                        <input type="text" class="form-control form-control-lg font-weight-light mt-4" placeholder="你的E-mail" name="email">
+                        <input type="submit" value="提交" class="btn btn-primary btn-lg mt-3 ff-login-btn font-weight-bold" onclick="document.lForm.action='sendMail'"/>
+                        <span class="wrong">${errorMsgFromForgetPwd.emailNotFound}</span>
+                        <span class="wrong">${errorMsgFromForgetPwd.emailEmptyError}</span>
+                        <span class="registerOK">${errorMsgFromForgetPwd.emailSucess}</span>
                     </form>
                 </div>
             </div>

@@ -1,15 +1,9 @@
 package tw.eis.util;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -18,7 +12,7 @@ public class AESUtil {
 	public final String KEY = "EEIT112Group6EIS20200508";
 	
 	//AES encryption
-    public byte[] encrypt(String content) {
+    public byte[] encrypt(String content){
         try {           
                 KeyGenerator kgen = KeyGenerator.getInstance("AES");
                 kgen.init(128, new SecureRandom(KEY.getBytes()));
@@ -30,20 +24,10 @@ public class AESUtil {
                 cipher.init(Cipher.ENCRYPT_MODE, key);
                 byte[] result = cipher.doFinal(byteContent);
                 return result; 
-        } catch (NoSuchAlgorithmException e) {
+        } catch (Exception e) {
                 e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-        } catch (InvalidKeyException e) {
-                e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-        } catch (BadPaddingException e) {
-                e.printStackTrace();
+                return null;
         }
-        return null;
     }
     
     //AES dencryption
@@ -58,18 +42,10 @@ public class AESUtil {
                 cipher.init(Cipher.DECRYPT_MODE, key);
                 byte[] result = cipher.doFinal(content);
                 return result;
-        } catch (NoSuchAlgorithmException e) {
+        } catch (Exception e) {
                 e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-        } catch (InvalidKeyException e) {
-                e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-        } catch (BadPaddingException e) {
-                e.printStackTrace();
-        }
-        return null;
+                return null;
+        }   
     }
     
     //Byte to Hex string

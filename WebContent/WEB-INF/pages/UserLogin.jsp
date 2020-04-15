@@ -22,6 +22,7 @@
                         <input type="password" class="form-control form-control-lg font-weight-light mt-3" placeholder="密碼" name="userPassword"><span class="wrong">${errorMsgMap.PasswordEmptyError}</span>
                         <input type="submit" value="登入" class="btn btn-primary btn-lg mt-3 ff-login-btn font-weight-bold" onclick="document.lForm.action='userLoginCheck'"/>
                         	<span class="wrong">${errorMsgMap.LoginError}</span>
+                        	<span class="wrong">${errorMsgMap.NoLoginError}</span>
                         	<span class="registerOK">${MsgFromPwdReset.resetSuccess}</span>
                         <div><a href="forgetPwd">忘記密碼?</a></div>
                     </form>

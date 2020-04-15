@@ -7,7 +7,7 @@ import tw.eis.model.Users;
 
 public class GenerateLinkUtil {
 	
-	private final String CHECK_CODE = "checkCode";
+	//private final String CHECK_CODE = "checkCode";
 	
 	public String generateResetPwdLink(Users uBean) {
 		return "http://localhost:8080/EIS/login/resetPassword?userName=" 

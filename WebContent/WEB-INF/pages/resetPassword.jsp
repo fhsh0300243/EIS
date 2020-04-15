@@ -18,7 +18,7 @@
                 <div class="ff-login-box">
                     <form method="post" action="passwordChange" name="lForm">
                         <h2 class="title">重設密碼</h2>
-                        <label for="usrname">Username</label>
+                        <label for="usrname">Account</label>
 						<input type="text" id="usrname" name="usrname" class="form-control form-control-lg font-weight-light mt-4" value="${userName}" readonly="readonly">                
 							<label for="psw">Password</label>
 							<input type="password" id="psw" name="psw" class="form-control form-control-lg font-weight-light mt-3" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"

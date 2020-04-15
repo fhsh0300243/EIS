@@ -44,17 +44,23 @@ public class LoginController {
 		return "UserLogin";
 	}
 	
-	@RequestMapping(path = "/userLoginCheck", method = RequestMethod.POST)
-	public String processLoginAction(@RequestParam("userName") String userAccount,
-			@RequestParam("userPassword") String userPwd, Model model) throws IOException, Exception {
+	@RequestMapping(path = "/userLoginCheck", method = {RequestMethod.POST, RequestMethod.GET})
+	public String processLoginAction(@RequestParam(value="userName", required=false) String userName,
+			@RequestParam(value="userPassword", required=false) String userPassword, Model model) throws IOException, Exception {
+		
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
 		model.addAttribute("errorMsgMap", errorMsgMap);
+		
+		if((userName==null || userName.trim().length() == 0) && (userPassword==null || userPassword.trim().length() == 0)) {
+			errorMsgMap.put("NoLoginError", "Please Login again");
+			return "UserLogin";
+		}
 
-		if (userAccount == null || userAccount.trim().length() == 0) {
+		if (userName == null || userName.trim().length() == 0) {
 			errorMsgMap.put("AccountEmptyError", "User account should not be empty");
 		}
 		
-		if (userPwd == null || userPwd.trim().length() == 0) {
+		if (userPassword == null || userPassword.trim().length() == 0) {
 			errorMsgMap.put("PasswordEmptyError", "User password should not be empty");
 		}
 
@@ -62,9 +68,9 @@ public class LoginController {
 			return "UserLogin";
 		}
 		
-		String encryptPwd=aes.parseByte2HexStr(aes.encrypt(userPwd));
+		String encryptPwd=aes.parseByte2HexStr(aes.encrypt(userPassword));
 		
-		List<Users> loginResult=uService.findUsers(userAccount, encryptPwd);
+		List<Users> loginResult=uService.findUsers(userName, encryptPwd);
 		
 		if(loginResult.size()>0) {
 			Iterator<Users> loginResultIT = loginResult.iterator();
@@ -91,11 +97,17 @@ public class LoginController {
 		return "CheckEmail";
 	}
 	
-	@RequestMapping(path = "/sendMail", method = RequestMethod.POST)
+	@RequestMapping(path = "/sendMail", method = {RequestMethod.POST, RequestMethod.GET})
 	public String ProcessForgotPwd(@RequestParam("email") String email, Model model) {
-		List<Employee> employeeByEmail=eService.findEmployeeByEmail(email);
 		Map<String, String> errorMsgFromForgetPwd = new HashMap<String, String>();
 		model.addAttribute("errorMsgFromForgetPwd", errorMsgFromForgetPwd);
+		
+		if (email == null || email.trim().length() == 0) {
+			errorMsgFromForgetPwd.put("emailEmptyError", "E-mail should not be empty");
+			return "CheckEmail";
+		}
+		
+		List<Employee> employeeByEmail=eService.findEmployeeByEmail(email);
 		
 		if(employeeByEmail.size() <= 0) {						
 			errorMsgFromForgetPwd.put("emailNotFound", "E-mail¨S³Qµù¥U¹L");
