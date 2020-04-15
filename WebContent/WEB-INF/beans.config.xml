@@ -21,7 +21,7 @@
 	
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
 	
-	<mvc:resources location="/WEB-INF/picture/" mapping="/images/**"/>
+	<mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
 
 	<bean id="SQLserverJndiDataSource"
 		class="org.springframework.jndi.JndiObjectFactoryBean">

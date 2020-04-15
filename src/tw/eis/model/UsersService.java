@@ -17,5 +17,13 @@ public class UsersService implements IUsersService {
 	public List<Users> findUsers(String userName, String userPassword) {
 		return uDAO.findUsers(userName, userPassword);
 	}
+	
+	public List<Users> findUsersByID(int userID){
+		return uDAO.findUsersByID(userID);
+	}
+	
+	public boolean updateUsersPassword(String userName, String userPassword) {
+		return uDAO.updateUsersPassword(userName, userPassword);
+	}
 
 }

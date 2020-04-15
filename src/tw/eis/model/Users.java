@@ -28,6 +28,17 @@ public class Users {
 	
 	@Column(name = "DEPARTMENT")
 	private String department;
+	
+	@Column(name = "UUID")
+	private String uUID;
+
+	public String getuUID() {
+		return uUID;
+	}
+
+	public void setuUID(String uUID) {
+		this.uUID = uUID;
+	}
 
 	public int getEmployeeID() {
 		return employeeID;
