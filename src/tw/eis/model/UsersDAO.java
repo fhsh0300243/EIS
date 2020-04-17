@@ -11,15 +11,18 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UsersDAO implements IUsersDAO{
-	private SessionFactory sessionFacotry;
+	private SessionFactory sessionFactory;
+	
+	public UsersDAO() {
+	}
 
 	@Autowired
-	public UsersDAO(@Qualifier(value = "sessionFactory") SessionFactory sessionFacotry) {
-		this.sessionFacotry = sessionFacotry;
+	public UsersDAO(@Qualifier(value = "sessionFactory") SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 	
 	public List<Users> findUsers(String userName, String userPassword) {
-		Session session = sessionFacotry.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<Users> query = session.createQuery("from Users where UserName = :userName and UserPassword = :userPassword", Users.class);
 		query.setParameter("userName", userName);
 		query.setParameter("userPassword", userPassword);
@@ -28,7 +31,7 @@ public class UsersDAO implements IUsersDAO{
 	}
 	
 	public List<Users> findUsersByID(int userID) {
-		Session session = sessionFacotry.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<Users> query = session.createQuery("from Users where EmployeeID = :userID", Users.class);
 		query.setParameter("userID", userID);
 		List<Users> list = query.list();
@@ -36,7 +39,7 @@ public class UsersDAO implements IUsersDAO{
 	}
 	
 	public boolean updateUsersPassword(String userName, String userPassword) {
-		Session session = sessionFacotry.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<Users> query = session.createQuery("from Users where UserName = :userName", Users.class);
 		query.setParameter("userName", userName);
 		List<Users> list = query.list();

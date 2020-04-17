@@ -11,15 +11,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EmployeeDAO implements IEmployeeDAO {
-	private SessionFactory sessionFacotry;
+	private SessionFactory sessionFactory;
 
 	@Autowired
-	public EmployeeDAO(@Qualifier(value = "sessionFactory") SessionFactory sessionFacotry) {
-		this.sessionFacotry = sessionFacotry;
+	public EmployeeDAO(@Qualifier(value = "sessionFactory") SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 	
 	public List<Employee> findEmployeeByEmail(String email) {
-		Session session = sessionFacotry.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<Employee> query = session.createQuery("from Employee where email = :email", Employee.class);
 		query.setParameter("email", email);
 		List<Employee> list = query.list();
